@@ -14,10 +14,12 @@ RUN apt-get update -y \
 
 
 
-WORKDIR     /usr/java
+WORKDIR     /opt/jdk
 
-RUN         wget -c --no-cookies --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie"  https://download.oracle.com/otn-pub/java/jdk/8u241-b07/1f5b5a70bf22433b84d0e960903adac8/jdk-8u241-linux-x64.tar.gz \
-            && tar zxvf jdk-8u241-linux-x64.tar.gz && rm jdk-8u241-linux-x64.tar.gz
+RUN         wget -c --no-cookies --quiet --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie"  https://download.oracle.com/otn-pub/java/jdk/8u241-b07/1f5b5a70bf22433b84d0e960903adac8/jdk-8u241-linux-x64.tar.gz \
+            && tar zxvf jdk-8u241-linux-x64.tar.gz \
+            && rm jdk-8u241-linux-x64.tar.gz \
+            && update-alternatives --install /usr/bin/java java /opt/jdk/jdk-8u241-linux-x64/bin/java 100
 
 USER        container
 ENV         USER=container HOME=/home/container

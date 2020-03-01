@@ -8,7 +8,7 @@ FROM        debian:buster-slim
 LABEL       author="Markus Selin"
 
 RUN apt-get update -y \
-    && apt-get install -y curl ca-certificates openssl git tar sqlite fontconfig tzdata iproute2 \
+    && apt-get install -y curl ca-certificates openssl git tar wget sqlite fontconfig tzdata iproute2 \
     && useradd -d /home/container -m container
  
 

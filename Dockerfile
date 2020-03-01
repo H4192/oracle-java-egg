@@ -17,9 +17,11 @@ ENV         USER=container HOME=/home/container
 
 WORKDIR     /home/container
 
-RUN         wget -c --no-cookies --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie"  https://download.oracle.com/otn-pub/java/jdk/8u241-b07/1f5b5a70bf22433b84d0e960903adac8/jdk-8u241-linux-x64.rpm \
-            && rpm -i jdk-8u241-linux-x64.rpm
+RUN         cd /usr/java/ \
+            && wget -c --no-cookies --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie"  https://download.oracle.com/otn-pub/java/jdk/8u241-b07/1f5b5a70bf22433b84d0e960903adac8/jdk-8u241-linux-x64.tar.gz \
+            &&  && tar zxvf jdk-8u241-linux-x64.tar.gz && rm jdk-8u241-linux-x64.tar.gz
 
+WORKDIR     /home/container
 
 COPY        ./entrypoint.sh /entrypoint.sh
 
